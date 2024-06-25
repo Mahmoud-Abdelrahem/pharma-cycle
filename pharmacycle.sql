@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 22, 2024 at 08:12 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: Jun 25, 2024 at 08:07 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `galary` (
   `id` int(11) NOT NULL,
   `image` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `galary`
@@ -55,6 +55,25 @@ INSERT INTO `galary` (`id`, `image`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `rols`
+--
+
+CREATE TABLE `rols` (
+  `id` int(11) NOT NULL,
+  `role` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `rols`
+--
+
+INSERT INTO `rols` (`id`, `role`) VALUES
+(1, 'access all app'),
+(2, 'user access');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `stock`
 --
 
@@ -64,7 +83,7 @@ CREATE TABLE `stock` (
   `image` varchar(50) NOT NULL,
   `price` varchar(50) NOT NULL,
   `description` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `stock`
@@ -98,16 +117,18 @@ CREATE TABLE `users` (
   `email` varchar(200) NOT NULL,
   `phone` varchar(200) NOT NULL,
   `password` varchar(200) NOT NULL,
-  `confirm_password` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `confirm_password` varchar(200) NOT NULL,
+  `role` int(11) NOT NULL,
+  `profile_img` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `phone`, `password`, `confirm_password`) VALUES
-(1, 'mahmoud', 'mahmoud@gmail.com', '01029401120', '12345678', '12345678'),
-(2, 'abdo', 'abdo@gmail.com', '010144556622', '12345678', '12345678');
+INSERT INTO `users` (`id`, `username`, `email`, `phone`, `password`, `confirm_password`, `role`, `profile_img`) VALUES
+(1, 'mahmoud abdelraheem', 'mahmoud@gmail.com', '01029401120', '12345678', '12345678', 1, 'assets/img/profile/profile_1.png'),
+(2, 'abdo', 'abdo@gmail.com', '01014455662', '12345678', '12345678', 2, 'assets/img/profile/profile_2.jpg');
 
 --
 -- Indexes for dumped tables
@@ -120,6 +141,12 @@ ALTER TABLE `galary`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `rols`
+--
+ALTER TABLE `rols`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `stock`
 --
 ALTER TABLE `stock`
@@ -129,7 +156,8 @@ ALTER TABLE `stock`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `role` (`role`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -142,6 +170,12 @@ ALTER TABLE `galary`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
+-- AUTO_INCREMENT for table `rols`
+--
+ALTER TABLE `rols`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `stock`
 --
 ALTER TABLE `stock`
@@ -152,6 +186,16 @@ ALTER TABLE `stock`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`role`) REFERENCES `rols` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
