@@ -687,7 +687,6 @@ section {
   border-right: 1px solid #74706B !important;
 }
 
-
 .history label {
   margin: 0 10px;
 }
@@ -695,6 +694,10 @@ section {
 .category-img {
   position: relative;
   overflow: hidden;
+  height: 40vh;
+}
+.category-img img{
+  height: 100%;
 }
 
 .trending-overlay2 {
@@ -710,23 +713,16 @@ section {
   width: 100%;
 }
 
-.trending-icon2 {
-  padding: 15px 0;
-}
 
 .trending-icon2 a {
   padding: 15px 20.5px;
   color: #212529;
   margin: 0 0;
-  transition: all .3s;
+  -o-transition: all .3s;
   -webkit-transition: all .3s;
   -moz-transition: all .3s;
   -ms-transition: all .3s;
-  -o-transition: all .3s;
-}
-
-.trending-img:hover .trending-overlay2 {
-  top: 60%;
+  transition: all .3s;
 }
 
 .trending-icon2 a:hover {
@@ -753,7 +749,9 @@ section {
   margin-top: 20px;
   position: relative;
 }
-
+.swiper-slide img{
+  height: 25vh;
+}
 .gallery .swiper-pagination .swiper-pagination-bullet {
   width: 12px;
   height: 12px;
@@ -1023,4 +1021,26 @@ section {
     text-align: center;
     padding: 5px 0;
   }
+}
+
+.btn-a{
+  padding: 10px;
+  width: 100%;
+  color: #212529;
+  background-color: #1ddf6e;
+  margin: 0 0;
+  -o-transition: all .3s;
+  -webkit-transition: all .3s;
+  -moz-transition: all .3s;
+  -ms-transition: all .3s;
+  transition: all .3s;
+}
+
+.trending-img:hover .trending-overlay2 {
+  top: 81%;
+  opacity: .8;
+}
+.btn-a:hover{
+  background: linear-gradient(to right, #1ddf6e, #39b49a);
+  color: white;
 }

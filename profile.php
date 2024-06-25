@@ -84,17 +84,16 @@ if (isset($_SESSION['users'])) {
 
             <i class="fa-solid fa-bars-staggered mobile-nav-toggle"></i>
             <div class="login-nav">
-                <a class="btn-login" href="profile.php">
-                    <i class="bi bi-person"></i>
-                </a>
-                <a class="btn-login" href="login.php">
-                    <i class="bi bi-lock"></i>
-                </a>
-
-                <!-- un comment for log-out -->
-                <!-- <a href="logout" class="btn-login log-out">
+            <?php if (isset($_SESSION['users'])) {?>
+       
+        <a href="logout" class="btn-login log-out">
           <i class="bi bi-box-arrow-in-right"></i>
-        </a> -->
+        </a>
+        <?php }else{?>
+        <a class="btn-login" href="login.php">
+          <i class="bi bi-lock"></i>
+        </a>
+        <?php }?>
             </div>
 
         </div>

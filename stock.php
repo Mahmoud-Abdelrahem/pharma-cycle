@@ -1,39 +1,36 @@
-
 <?php
-
 include "app/config.php";
 include "app/functions.php";
 
 $select = "SELECT * FROM stock";
 $s = mysqli_query($conn, $select);
-$row = mysqli_fetch_assoc($s);
 
 if (isset($_POST['send'])) {
-    $name = $_POST['name'];
-    $price = $_POST['price'];
-    $des = $_POST['des'];
+    $name = mysqli_real_escape_string($conn, $_POST['name']);
+    $price = mysqli_real_escape_string($conn, $_POST['price']);
+    $des = mysqli_real_escape_string($conn, $_POST['des']);
 
-    $uploadDir = 'uploads/';
-    $uploadFile = $uploadDir . basename($_FILES['image']['name']);
+    $image_name = $_FILES['image']['name'];
+    $image_tmp = $_FILES['image']['tmp_name'];
+    $location = "./assets/img/stock/" . $image_name;
 
-    if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile)) {
-        // Insert file information into the database
-        $filename = basename($_FILES['image']['name']);
-        $filepath = $uploadFile;
+    if (move_uploaded_file($image_tmp, $location)) {
 
-        // Insert the data into the database
-        $insert = "INSERT INTO stock (name,image , price , description ) VALUES ('$name', '$filepath', '$price', '$des')";
-        $i = mysqli_query($conn, $insert);
+        $insert = "INSERT INTO stock (name, image, price, description) VALUES ('$name', '$location', '$price', '$des')";
+        $result = mysqli_query($conn, $insert);
 
-        // Redirect to stock.php after insertion
-        path('stock.php');
+        if ($result) {
+            path('stock.php'); // Redirect after successful insertion
+            exit;
+        } else {
+            echo "Error: " . mysqli_error($conn); // Display SQL error if insertion fails
+        }
     } else {
-        echo "File upload failed.";
+        echo "Error uploading file."; // Display error if file upload fails
     }
-
 }
-
 ?>
+
 
 
 
@@ -109,17 +106,19 @@ if (isset($_POST['send'])) {
 
             <i class="fa-solid fa-bars-staggered mobile-nav-toggle"></i>
             <div class="login-nav">
-                <a href="profile.php" class="btn-login">
-                    <i class="bi bi-person"></i>
-                </a>
-                <a href="login.php" class="btn-login">
-                    <i class="bi bi-lock"></i>
-                </a>
 
-                <!-- un comment for log-out -->
-                <!-- <a href="logout" class="btn-login log-out">
-                    <i class="bi bi-box-arrow-in-right"></i>
-                </a> -->
+            <?php if (isset($_SESSION['users'])) {?>
+        <a class="btn-login" href="profile.php">
+          <i class="bi bi-person"></i>
+        </a>
+        <a href="logout" class="btn-login log-out">
+          <i class="bi bi-box-arrow-in-right"></i>
+        </a>
+        <?php } else {?>
+        <a class="btn-login" href="login.php">
+          <i class="bi bi-lock"></i>
+        </a>
+        <?php }?>
             </div>
 
         </div>
@@ -140,6 +139,7 @@ if (isset($_POST['send'])) {
                     <div class="action text-center">
 
                         <!-- Button trigger modal -->
+                        
                         <button type="button" class="btn btn-success" data-bs-toggle="modal"
                             data-bs-target="#exampleModal">
                             Add Mediceine
@@ -188,7 +188,7 @@ if (isset($_POST['send'])) {
                                             <div class="modal-footer">
                                         <button type="button" class="btn btn-dark"
                                             data-bs-dismiss="modal">Cancel</button>
-                                        <button type="button" name="send" class="btn btn-success">Save changes</button>
+                                        <button type="submit" name="send" class="btn btn-success">Save changes</button>
                                     </div>
 
                                         </form>
@@ -218,15 +218,18 @@ if (isset($_POST['send'])) {
                                     <img src="<?=$data['image']?>" alt="">
                                     <div class="trending-overlay2">
                                         <div class="trending-icon2">
-                                            <a href="#"><i class="bi bi-search"></i></a>
-                                            <a href="#"><i class="bi bi-image"></i></a>
-                                            <a href="#"><i class="bi bi-currency-pound"></i></a>
+
+                                        <form action="submit.php" method="post">
+                                            <input type="hidden" name="item_id" value="<?=htmlspecialchars($data['id'])?>">
+                                            <button name="add" class="btn-a" type="submit">Order Now</button>
+                                        </form>
+
                                         </div>
                                     </div>
                                 </div>
                                 <div class="trending-text mt-3 text-center ">
                                     <h5><a href="" class="cart-item"><?=$data['name']?></a></h5>
-                                    <span class="span2"><?=$data['price']?></span>
+                                    <span class="span2"><?=$data['price']?> EGP</span>
                                 </div>
                             </div>
                             <?php }?>
@@ -333,7 +336,7 @@ if (isset($_POST['send'])) {
     <script src="assets/vendor/php-email-form/validate.js"></script>
 
     <!-- Template Main JS File -->
-    <script src="assets/js/main.js"></script>
+    <script src="./assets/js/main.js"></script>
 
 </body>
 

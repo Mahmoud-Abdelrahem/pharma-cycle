@@ -66,7 +66,12 @@ $row = mysqli_fetch_assoc($s);
         <ul class="">
           <li><a class="active " href="index.php">Home</a></li>
           <li><a href="index.php#about">About Us</a></li>
-          <li><a href="stock.php">Stock</a></li>
+          <?php if (isset($_SESSION['users'])) {?>
+            <li><a href="stock.php">Stock</a></li>
+            <?php }else{ ?>
+              <li><a href="login.php">Stock</a></li>
+          <?php } ?>
+          
           <li><a href="#gallery">Galary Stock</a></li>
 
         </ul>
@@ -77,17 +82,21 @@ $row = mysqli_fetch_assoc($s);
 
       <i class="fa-solid fa-bars-staggered mobile-nav-toggle"></i>
       <div class="login-nav">
+     <?php if (isset($_SESSION['users'])) {?>
         <a class="btn-login" href="profile.php">
           <i class="bi bi-person"></i>
         </a>
+        <a href="login.php" class="btn-login log-out">
+          <?php session_destroy(); ?>
+          <i class="bi bi-box-arrow-in-right"></i>
+        </a>
+        <?php }else{?>
         <a class="btn-login" href="login.php">
           <i class="bi bi-lock"></i>
         </a>
+        <?php }?>
 
-        <!-- un comment for log-out -->
-        <!-- <a href="logout" class="btn-login log-out">
-          <i class="bi bi-box-arrow-in-right"></i>
-        </a> -->
+        
       </div>
 
     </div>

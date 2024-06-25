@@ -111,7 +111,7 @@ if (isset($_POST['signup'])) {
                             </div>
                             <div class="form-group first">
                                 <label for="username">Phone :</label>
-                                <input type="text" name="phone" class="form-control input" placeholder="01014052604" id="username">
+                                <input type="text" name="phone" class="form-control input" placeholder="Enter Your Phone" id="username">
                             </div>
                             <div class="form-group last mb-3">
                                 <label for="password">Password :</label>
@@ -120,12 +120,22 @@ if (isset($_POST['signup'])) {
 
                             <div class="form-group last mb-3">
                                 <label for="password">Confirm Password :</label>
-                                <input type="password" name="confirm" class="form-control input" placeholder="password" id="password">
+                                <input type="password" name="confirm" class="form-control input" placeholder="Confirm password" id="password">
                             </div>
 
-                            <div class="d-flex mb-2 align-items-center">
-                                <span class="me-auto"><a href="#" class="forgot-pass">Forgot Password ?</a></span>
-                            </div>
+
+                            <?php if (!empty($emailErorr)): ?>
+                                <div class="alert alert-danger mt-3">
+                                    <ul>
+                                        <?php foreach ($emailErorr as $error): ?>
+                                            <li><?=$error?></li>
+                                        <?php endforeach;?>
+                                    </ul>
+                                </div>
+                            <?php endif;?>
+
+
+                            
                             <div class="group-btn mb-5">
                                 <button class="link btn-block btn-success sign-in" name="signup">Sign Up</button>
                                 <div class="text-center my-3 or"> <span>OR</span> </div>

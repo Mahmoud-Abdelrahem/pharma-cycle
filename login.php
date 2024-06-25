@@ -4,7 +4,6 @@ include "app/config.php";
 include "app/functions.php";
 
 $emailErorr = [];
-$emailErorr2 = [];
 
 if (isset($_POST['login'])) {
     $email = $_POST['email'];
@@ -16,19 +15,16 @@ if (isset($_POST['login'])) {
 
     if ($email == "" || $pass == "") {
         $emailErorr[] = "Email Or Password Can Not Be Empty";
-        $emailErorr2[] = 'لا يمكن ان يكون اسم المستخدم وكلمة المرور فارغين';
     }
     if ($numRows == 1) {
         $_SESSION['users'] = [
             "email" => $email,
-            // "ruleID" => $row['ruleID'],
             "id" => $row['id'],
         ];
 
         path("index.php");
     } else {
         $emailErorr[] = 'Wrong password or email';
-        $emailErorr2[] = 'حطأ في اسم المستخدم او كلمة المرور';
     }
 }
 
