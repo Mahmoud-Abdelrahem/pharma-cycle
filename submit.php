@@ -19,8 +19,8 @@ $price_in_EGP = intval($row['price'] * 100);
 
 $checkout_session = \Stripe\Checkout\Session::create([
     "mode" => "payment",
-    "success_url" => "http://localhost/pharam-Cycle/stock.php",
-    "cancel_url" => "http://localhost/pharam-Cycle/stock.php",
+    "success_url" => "http://localhost/pharma-Cycle/stock.php",
+    "cancel_url" => "http://localhost/pharma-Cycle/stock.php",
     "locale" => "auto",
     "line_items" => [
         [

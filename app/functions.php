@@ -13,7 +13,7 @@ function testMessage($condition, $message)
 
 function path($go)
 {
-    echo "<script> window.location.replace('/pharam-Cycle/$go')</script>";
+    echo "<script> window.location.replace('/pharma-Cycle/$go')</script>";
 }
 
 function pathAdmin($go)
@@ -27,10 +27,9 @@ function auth($rule2 = null, $rule3 = null)
 {
     if ($_SESSION['users']) {
         if (isset($_SESSION['users'])) {
-            if ($_SESSION['users']['ruleID'] == 1 || $_SESSION['users']['ruleID'] == $rule2) {
+            if ($_SESSION['users']['roleId'] == 1 || $_SESSION['users']['roleId'] == $rule2) {
             } else {
-
-                path("booking.php");
+                path("login.php");
             }
         } else {
             path('login.php');
