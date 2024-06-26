@@ -35,7 +35,7 @@
                     </form>
                 </div>
             <?php } else { ?>
-                <a class="btn-login" href="login.php">
+                <a class="btn-login" href="../login.php">
                     <i class="bi bi-lock"></i>
                 </a>
             <?php } ?>

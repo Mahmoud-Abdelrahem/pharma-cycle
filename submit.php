@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-$stripe_secret_key = "sk_test_51PVJF204OGesDAKctvubLDmlsDyytd94jji91O5E9KSJoSsnWSFG1r7entbArSxLVZwoYfcCyHdGwgnWEXRMsfy300Qq5XdjoG";
+$stripe_secret_key = "sk_test_51PVMs3P4k73nbUaCz7yYbRjmPEZutrQO0OKampT9Pmk4riZTYJ00VKvLidUpEraEnq8wUMLfREacY4cJHsj1csSG00UnHjomy7";
 \Stripe\Stripe::setApiKey($stripe_secret_key);
 
 $price_in_EGP = intval($row['price'] * 100);
@@ -27,7 +27,7 @@ $checkout_session = \Stripe\Checkout\Session::create([
             "quantity" => 1,
             "price_data" => [
                 "unit_amount" => $price_in_EGP,
-                "currency" => "EGP",
+                "currency" => "USD",
                 "product_data" => [
                     "name" => $row['name'],
                     "description" => $row['description']

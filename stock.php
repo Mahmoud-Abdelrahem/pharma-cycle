@@ -88,12 +88,12 @@ auth(2);
                                         <div class="mb-3">
                                             <label for="name" class="form-label">Mediceine Name</label>
                                             <input type="text" class="form-control" id="name" name="name"
-                                                placeholder="Medicine Name">
+                                                placeholder="Medicine Name" required>
                                         </div>
                                         <div class="mb-3">
                                             <label for="title" class="form-label">Price</label>
                                             <input type="text" class="form-control" id="title" name="price"
-                                                placeholder="Medicine Price ">
+                                                placeholder="Medicine Price" required>
                                         </div>
 
                                         <div class="mb-3">
@@ -104,20 +104,20 @@ auth(2);
                                         <div class="mb-3">
                                             <label for="about" class="form-label">About Mediceine</label>
                                             <textarea class="form-control" id="about" rows="3" name="des"
-                                                placeholder="Description About it"></textarea>
+                                                placeholder="Description About it" required></textarea>
                                         </div>
 
                                         <div class="mb-3">
                                             <label for="image" class="form-label">Mediceine Image</label>
                                             <input type="file" class="form-control" id="image" rows="3"
-                                                name="image"></input>
+                                                name="image" required></input>
                                         </div>
 
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-dark"
                                                 data-bs-dismiss="modal">Cancel</button>
                                             <button type="submit" name="send" class="btn btn-success">Save
-                                                changes</button>
+                                                Changes</button>
                                         </div>
 
                                     </form>

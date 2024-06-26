@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 26, 2024 at 05:48 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Generation Time: Jun 26, 2024 at 11:46 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `galary` (
   `id` int(11) NOT NULL,
   `image` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `galary`
@@ -61,7 +61,7 @@ INSERT INTO `galary` (`id`, `image`) VALUES
 CREATE TABLE `rols` (
   `id` int(11) NOT NULL,
   `role` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `rols`
@@ -81,29 +81,29 @@ CREATE TABLE `stock` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `image` varchar(50) NOT NULL,
-  `price` varchar(50) NOT NULL,
+  `price` int(50) NOT NULL,
   `description` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `stock`
 --
 
 INSERT INTO `stock` (`id`, `name`, `image`, `price`, `description`) VALUES
-(1, 'FUCI – TOP 2% 15 GM CREAM', 'assets/img/stock/gallery-1.png', '19.50 EGP', 'Classification: Antibiotics'),
-(2, 'BIVATRACIN 150 ML POWDER SPRAY', 'assets/img/stock/gallery-2.png', '58.00 EGP', 'Classification: Antibiotics'),
-(3, 'ACHTENON ( AKINETON ) 2 MG 30 TAB', 'assets/img/stock/gallery-3.png', '34.50 EGP', 'Category: Drugs to treat Parking’s'),
-(4, 'PARKICAPONE 200 MG 20 TAB', 'assets/img/stock/gallery-4.png', '50.00 EGP', 'Category: Drugs to treat Parking’s'),
-(5, 'ACTI-COLLA C 30 SACHETS', 'assets/img/stock/gallery-5.png', '555.00 EGP', 'Category: Treatment of osteoarthritis'),
-(6, 'NEOPAUSIL  30 CAP', 'assets/img/stock/gallery-6.png', '325.00 EGP', 'Category: Period disorders'),
-(7, 'ACTIVE MENO  30 TAB', 'assets/img/stock/gallery-7.png', '450.00 EGP', 'Category: Period disorders'),
-(8, 'ADOL EXTRA 24 CAPLETS', 'assets/img/stock/gallery-8.png', '22.00 EGP', 'Classification: Non-narcotic painkillers'),
-(9, 'BRUFEN 400mg 30 TAB', 'assets/img/stock/gallery-9.png', '69.00 EGP', 'Classification: Non-narcotic painkillers'),
-(10, 'ADOLOR 15 MG / 1 ML 3 AMP', 'assets/img/stock/gallery-10.png', '19.50 EGP', 'Classification: Non-narcotic painkillers'),
-(11, 'BABY RELIEF 25 MG 5 SUPP', 'assets/img/stock/gallery-11.png', '9.00 EGP', 'Classification: Non-narcotic painkillers'),
-(12, 'LACTEVENOR 0.03 MG 35 TAB', 'assets/img/stock/gallery-12.png', '16.50 EGP', 'Category: contraceptives'),
-(13, 'ADWIFLAM 75 MG / 3 ML 6 AMP', 'assets/img/stock/gallery-13.png', '36.00 EGP', 'Classification: analgesic and anti-rheumatism'),
-(14, 'Femogesal TAP', 'assets/img/stock/gallery-14.png', '16.50 EGP', 'Category: contraceptives');
+(1, 'FUCI – TOP 2% 15 GM CREAM', 'assets/img/stock/gallery-1.png', 19, 'Classification: Antibiotics'),
+(2, 'BIVATRACIN 150 ML POWDER SPRAY', 'assets/img/stock/gallery-2.png', 58, 'Classification: Antibiotics'),
+(3, 'ACHTENON ( AKINETON ) 2 MG 30 TAB', 'assets/img/stock/gallery-3.png', 34, 'Category: Drugs to treat Parking’s'),
+(4, 'PARKICAPONE 200 MG 20 TAB', 'assets/img/stock/gallery-4.png', 50, 'Category: Drugs to treat Parking’s'),
+(5, 'ACTI-COLLA C 30 SACHETS', 'assets/img/stock/gallery-5.png', 555, 'Category: Treatment of osteoarthritis'),
+(6, 'NEOPAUSIL  30 CAP', 'assets/img/stock/gallery-6.png', 325, 'Category: Period disorders'),
+(7, 'ACTIVE MENO  30 TAB', 'assets/img/stock/gallery-7.png', 450, 'Category: Period disorders'),
+(8, 'ADOL EXTRA 24 CAPLETS', 'assets/img/stock/gallery-8.png', 22, 'Classification: Non-narcotic painkillers'),
+(9, 'BRUFEN 400mg 30 TAB', 'assets/img/stock/gallery-9.png', 69, 'Classification: Non-narcotic painkillers'),
+(10, 'ADOLOR 15 MG / 1 ML 3 AMP', 'assets/img/stock/gallery-10.png', 19, 'Classification: Non-narcotic painkillers'),
+(11, 'BABY RELIEF 25 MG 5 SUPP', 'assets/img/stock/gallery-11.png', 9, 'Classification: Non-narcotic painkillers'),
+(12, 'LACTEVENOR 0.03 MG 35 TAB', 'assets/img/stock/gallery-12.png', 16, 'Category: contraceptives'),
+(13, 'ADWIFLAM 75 MG / 3 ML 6 AMP', 'assets/img/stock/gallery-13.png', 36, 'Classification: analgesic and anti-rheumatism'),
+(14, 'Femogesal TAP', 'assets/img/stock/gallery-14.png', 16, 'Category: contraceptives');
 
 -- --------------------------------------------------------
 
@@ -120,14 +120,14 @@ CREATE TABLE `users` (
   `confirm_password` varchar(200) NOT NULL,
   `role` int(11) NOT NULL,
   `profile_img` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `phone`, `password`, `confirm_password`, `role`, `profile_img`) VALUES
-(1, 'mahmoud abdelraheem', 'mahmoud@gmail.com', '01029401120', '12345678', '12345678', 1, 'assets/img/profile/profile_1.png'),
+(1, 'mahmoud abdelraheem', 'mahmoud@gmail.com', '01029401120', '12345678', '12345678', 1, ''),
 (2, 'abdo', 'abdo@gmail.com', '01014455662', '12345678', '12345678', 2, 'assets/img/profile/profile_2.jpg');
 
 --
@@ -179,7 +179,7 @@ ALTER TABLE `rols`
 -- AUTO_INCREMENT for table `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `users`
