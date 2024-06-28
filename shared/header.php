@@ -13,7 +13,7 @@
                 <li><a class="active " href="index.php">Home</a></li>
                 <li><a href="index.php#about">About Us</a></li>
                 <li><a href="stock.php">Stock</a></li>
-                <li><a href="#gallery">Galary Stock</a></li>
+                <li><a href="index.php#gallery">Galary Stock</a></li>
 
             </ul>
 

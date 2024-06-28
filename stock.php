@@ -32,23 +32,21 @@ if (isset($_POST['send'])) {
     }
 }
 
+if (isset($_GET['delete'])) {
+    $delete_id = $_GET['delete'];
+    $delete = "DELETE from stock where id = $delete_id";
+    mysqli_query($conn, $delete);
+    path('stock.php');
+}
+
 auth(2);
-
-
 ?>
-
-
-
-
-
 
 <!-- ======= Pre loader ======= -->
 
 <div id="preloader">
     <img class="preloader" src="assets/img/loaders/heart-loading2.gif" alt="">
 </div><!-- End pre loader -->
-
-
 
 <main id="main">
 
@@ -68,7 +66,7 @@ auth(2);
 
                     <?php if (isset($_SESSION['users'])): ?>
                         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            Add Mediceine
+                            Add Medicine
                         </button>
 
                     <?php endif; ?>
@@ -86,7 +84,7 @@ auth(2);
                                 <div class="modal-body text-start text-light">
                                     <form method="POST" enctype="multipart/form-data">
                                         <div class="mb-3">
-                                            <label for="name" class="form-label">Mediceine Name</label>
+                                            <label for="name" class="form-label">Medicine Name</label>
                                             <input type="text" class="form-control" id="name" name="name"
                                                 placeholder="Medicine Name" required>
                                         </div>
@@ -102,15 +100,15 @@ auth(2);
                                                 placeholder="Order Phone">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="about" class="form-label">About Mediceine</label>
+                                            <label for="about" class="form-label">About Medicine</label>
                                             <textarea class="form-control" id="about" rows="3" name="des"
                                                 placeholder="Description About it" required></textarea>
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="image" class="form-label">Mediceine Image</label>
-                                            <input type="file" class="form-control" id="image" rows="3"
-                                                name="image" required></input>
+                                            <label for="image" class="form-label">Medicine Image</label>
+                                            <input type="file" class="form-control" id="image" rows="3" name="image"
+                                                required></input>
                                         </div>
 
                                         <div class="modal-footer">
@@ -132,7 +130,6 @@ auth(2);
             </div>
         </div>
     </section> <!-- End Breadcrumbs Section -->
-
 
     <!-- category-form -->
     <section class="category-form ">
@@ -160,6 +157,14 @@ auth(2);
                                 <div class="trending-text mt-3 text-center ">
                                     <h5><a href="" class="cart-item"><?= $data['name'] ?></a></h5>
                                     <span class="span2"><?= $data['price'] ?> EGP</span>
+                                    <?php if ($_SESSION['users']['roleId'] == 1): ?>
+                                        <div class="mt-3">
+                                            <a href="editStock.php?edit=<?= $data['id'] ?>"
+                                                class="btn btn-primary btn-sm">Edit</a>
+                                            <a href="stock.php?delete=<?= $data['id'] ?>"
+                                                class="btn btn-danger btn-sm">Delete</a>
+                                        </div>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         <?php } ?>
