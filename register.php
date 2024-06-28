@@ -44,7 +44,7 @@ if (isset($_POST['signup'])) {
             "pass" => $pass,
             "confirm_pass" => $confirmPass,
         ];
-        $insert = " INSERT INTO users VALUES (null , '$name' , '$email' , '$phone' , '$pass' , $confirmPass , 2 , 'assets/uploads/img/prof.jpg')";
+        $insert = " INSERT INTO users VALUES (null , '$name' , '$email' , '$phone' , '$pass' , $confirmPass , 2 , 'assets/img/profile/prof.jpg')";
         $i = mysqli_query($conn, $insert);
         path('login.php');
 
